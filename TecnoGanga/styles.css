@@ -1,17 +1,26 @@
 :root {
     --color1: #f2f2f2; /* gris claro */
     --color2: #d9d9d9; /* gris no tan claro */
-    --color3: #ffffff; /* blanco */
+    --color3: #717D7E; /* gris oscuro */
+    --color4: #ffffff; /* blanco */
+    --color_logo_azul: #bdc9fb;
+    --color_logo_gris: #676d84;
 }
 
 .menu-nav {
     background: var(--color2);
     max-height: 20vh;
+    align-items: center;
     align-content: center;
     justify-content: center;
     vertical-align: center;
 }
-
+.letra-texto {
+    font-size: x-small
+}
+.letra-descripción {
+    /* font-family: Didot, serif;  Para cambiar la fuente de letra de los productos */
+}
 .cont-bor-red {
     align-content: center;
     align-items: center;
@@ -21,7 +30,23 @@
     border-radius: 10px;
     padding: 30px;
 }
+.article{
 
+}
+
+.filtros{
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 80%;
+}
+.margen{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.post{
+    margin-top: 10px;
+}
 .cerca{
     width: 50%;
 }
