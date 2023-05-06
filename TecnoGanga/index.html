@@ -71,7 +71,7 @@
                 <div class="col-sm-3 ">
                     <div class="filtros">
                         <barra-deslizante titulo="Precio:" min=0 max=1000 step=10 value=500 moneda="€" ></barra-deslizante>
-                        <template v-for="filtro in filtros" :key="index">
+                        <template v-for="filtro in filtros" :key="filtro.nombre">
                             <div class="border-top" style="margin-top: 10px"></div>
                             <filtros :filtros="filtro.filtros" :titulo="filtro.titulo"></filtros>
                         </template>
