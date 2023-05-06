@@ -113,10 +113,10 @@ miapp.component('barra-deslizante',{
                 <label>{{titulo}}</label>
             </div>
             <div class="col-12 col-container">
-                <input type="range" id="price" name="price" :min="min" :max="max" :step="step" v-on: @change="onchangeRange()">
+                <input type="range" id="price" name="price" :min="min" :max="max" :step="step" @change="onchangeRange()">
             </div>
             <div class="col-12 col-container align-items-center">
-                <input type="text" id="priceInput" name="priceInput" style="border: none; background-color: transparent; text-align: center; width: 50%;" v-on: @change="onchangeText(value)">
+                <input type="text" id="priceInput" name="priceInput" style="border: none; background-color: transparent; text-align: center; width: 50%;" @change="onchangeText(value)">
             </div>
         </div>
     </div>
