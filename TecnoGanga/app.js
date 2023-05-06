@@ -78,10 +78,10 @@ miapp.component('filtros', {
     props: {
         titulo: String,
         filtros: Array,
-        filtrosSeleccionados: Array
     },
     data() {
         return {
+            filtroSeleccionados: []
         }
     },
     methods: {
@@ -123,9 +123,9 @@ miapp.component('barra-deslizante',{
     `,
     props: {
         titulo: {type:String},
-        min: {type:Number},
-        max: {type:Number},
-        step: {type:Number}
+        min: {type:String},
+        max: {type:String},
+        step: {type:String}
     },
     data() {
         return {
