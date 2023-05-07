@@ -1,6 +1,7 @@
 const miapp = Vue.createApp({
     data(){
         return{
+            busqueda: "",
             productos: [{
                 nombre: "Lenovo IdeaPad 3 Gen 6",
                 imagen: "./resource/portatil.jpg",
@@ -59,6 +60,17 @@ const miapp = Vue.createApp({
             }
             ]
         }
+    },
+    methods:{
+        setBusqueda(text){
+            this.busqueda = text.slice();
+        },
+        buscar(){
+            input = document.getElementById("buscador");
+            value = input.value;
+            this.num += 1;
+            this.setBusqueda(value);
+        }
     }
 });
 miapp.component('filtros', {
@@ -109,8 +121,8 @@ miapp.component('barra-deslizante',{
     template: `
     <div class="filtros">
         <div class="row">
-            <div class="col-12 col-container align-items-center">
-                <label>{{titulo}}</label>
+            <div class="col-12 col-container">
+                <h4>{{titulo}}</h4>
             </div>
             <div class="col-12 col-container">
                 <input type="range" id="price" name="price" :min="min" :max="max" :step="step" @change="onchangeRange()">

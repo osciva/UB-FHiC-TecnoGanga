@@ -59,8 +59,8 @@
                 <nav class="navbar navbar-light">
                     <div class="container-fluid justify-content-center">
                         <form class="d-flex cerca">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success " type="submit">
+                            <input class="form-control me-2" id="buscador" type="search" placeholder="Search" aria-label="Search" @input="buscar()">
+                            <button class="btn btn-outline-success" id="btn-buscar" type="button" @click.stop="buscar()">
                                 <span class="material-icons">search</span>
                             </button>
                         </form>
@@ -78,17 +78,20 @@
                     </div>
                 </div>
                 <div class="col-sm-9 article">
-                    <div class="row post">
-                        <template v-for="producto in productos" :key="producto.nombre">
-                            <div class="col-sm-5 col-container">
-                                <producto  :producto="producto"></producto>
+                    <h4 v-if="busqueda.length != 0">Resultado de: {{busqueda}}</h4>
+                    <template v-for="producto in productos" :key="producto.nombre">
+                        <div v-if="producto.nombre.toLowerCase().includes(busqueda.toLowerCase())">
+                            <div class="row post">
+                                <div class="col-sm-5 col-container">
+                                    <producto  :producto="producto"></producto>
+                                </div>
+                                <div class="col-sm-7 col-container">
+                                    <hilo :hilo="producto.hilos[0]"></hilo>
+                                </div>
                             </div>
-                            <div class="col-sm-7 col-container">
-                                <hilo :hilo="producto.hilos[0]"></hilo>
-                            </div>
-                        </template>
-                    </div>
-                </div>
+                        </div>
+                    </template>
+                </h4>
             </div>
         </div>
     </section>
