@@ -62,6 +62,9 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
+        isEmptyBusqueda(){
+            return this.busqueda == 0;
+        },
         setBusqueda(text){
             this.busqueda = text.slice();
         },
