@@ -68,9 +68,6 @@ const miapp = Vue.createApp({
         setPrecioMax(num){
             this.precioMax = num;
         },
-        filtroPrecio(precio){
-            return this.precioMax >= precio;
-        },
         isEmptyBusqueda(){
             return this.busqueda != "";
         },
