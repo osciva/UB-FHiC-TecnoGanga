@@ -2,6 +2,7 @@ const miapp = Vue.createApp({
     data(){
         return{
             busqueda: "",
+            precioMax: 0,
             productos: [{
                 nombre: "Lenovo IdeaPad 3 Gen 6",
                 imagen: "./resource/portatil.jpg",
@@ -11,6 +12,7 @@ const miapp = Vue.createApp({
                     Tamaño: "8GB RAM | 512GB SSD",
                     Pantalla: "15.6 Pulgadas"
                 },
+                precio: 599,
                 hilos: [{
                     nombre: "Juan",
                     imagen: "./resource/usario.png",
@@ -29,6 +31,7 @@ const miapp = Vue.createApp({
                     Tamaño: "32 GB RAM DDR5| 1TB SSD",
                     Pantalla: "18 Pulgadas"
                 },
+                precio: 2599,
                 hilos: [{
                     nombre: "Luismi",
                     imagen: "./resource/usario.png",
@@ -62,6 +65,12 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
+        setPrecioMax(num){
+            this.precioMax = num;
+        },
+        filtroPrecio(precio){
+            return this.precioMax >= precio;
+        },
         isEmptyBusqueda(){
             return this.busqueda != "";
         },
@@ -71,7 +80,6 @@ const miapp = Vue.createApp({
         buscar(){
             input = document.getElementById("buscador");
             value = input.value;
-            this.num += 1;
             this.setBusqueda(value);
         }
     }
@@ -146,18 +154,33 @@ miapp.component('barra-deslizante',{
         return {
         }
     },
+    mounted() {
+        this.setValue("3000");
+    },
+    computed: {
+
+    },
     methods: {
+        setValue(number){
+            priceInput = document.getElementById("price")
+            priceInput.value = number;
+            priceText = document.getElementById("priceInput");
+            priceText.value = number+"€";
+            this.$parent.setPrecioMax(number)
+        },
         onchangeRange() {
-            var priceInput = document.getElementById("price")
-            var currentPrice = parseInt(priceInput.value)
-            var priceText = document.getElementById("priceInput");
+            priceInput = document.getElementById("price")
+            currentPrice = parseInt(priceInput.value)
+            priceText = document.getElementById("priceInput");
             priceText.value = currentPrice+"€";
+            this.$parent.setPrecioMax(currentPrice)
         },
         onchangeText(){
-            var priceText = document.getElementById("priceInput");
-            var currentPrice = parseInt(priceText.value);
-            var priceInput = document.getElementById("price");
+            priceText = document.getElementById("priceInput");
+            currentPrice = parseInt(priceText.value);
+            priceInput = document.getElementById("price");
             priceInput.value = currentPrice;
+            this.$parent.setPrecioMax(currentPrice)
         }
     }
 })
