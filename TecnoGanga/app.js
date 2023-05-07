@@ -63,6 +63,10 @@ const miapp = Vue.createApp({
             }
             ]
         }
+    },computed: {
+        getPrecioMax() {
+            return this.precioMax;
+        }
     },
     methods:{
         setPrecioMax(num){
