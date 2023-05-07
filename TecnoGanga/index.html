@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="col-sm-9 article">
-                    <h4 v-if="!isEmptyBusqueda()">Resultado de: {{busqueda}}</h4>
+                    <h4 v-if="isEmptyBusqueda()">Resultado de: {{busqueda}}</h4>
                     <template v-for="producto in productos" :key="producto.nombre">
                         <div v-if="producto.nombre.toLowerCase().includes(busqueda.toLowerCase())">
                             <div class="row post">
