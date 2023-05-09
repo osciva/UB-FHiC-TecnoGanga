@@ -1,148 +1,149 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-<head>
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-    >
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="app.js" defer></script>
-</head>
-<body>
-    <section id="app">
-        <div class="container-fluid">
-            <div class="row menu-nav">
-                <div class="col-sm">
-                    <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
-                </div>
-                <div class="col-sm">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                                <ul class="navbar-nav" >
-                                    <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#">Inici</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Forum</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="Fils.html">Fils</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#">Cerca</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">GeekNote</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
 
-                </div>
-                <div class="col-sm text-center ">
-                    <img src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
-                    <h6> <a class="username" href="user.html">usuario123</a></h6>
-                </div>
-            </div>
-            <div class="row buscador">
-                <nav class="navbar navbar-light">
-                    <div class="container-fluid justify-content-center">
-                        <form class="d-flex cerca">
-                            <input class="form-control me-2" id="buscador" type="search" placeholder="Search" aria-label="Search" @input="buscar()">
-                            <button class="btn btn-outline-success" id="btn-buscar" type="button" @click.stop="buscar()">
-                                <span class="material-icons">search</span>
-                            </button>
-                        </form>
-                    </div>
-                </nav>
-            </div>
-            <div class="row main-row">
-                <div class="col-sm-3 ">
-                    <div class="filtros">
-                        <barra-deslizante titulo="Precio:" min=0 max=3000 step=10 value=500 moneda="€"></barra-deslizante>
-                        <template v-for="filtro in filtros" :key="filtro.nombre">
-                            <div class="border-top" style="margin-top: 10px"></div>
-                            <filtros :filtros="filtro.filtros" :titulo="filtro.titulo"></filtros>
-                        </template>
-                    </div>
-                </div>
-                <div class="col-sm-9 article">
-                    <div class="product-container">
-                        <img src="./resource/portatil.jpg" alt="Product Image" class="product-image">
-                      
-                        <div class="review-container">
-                          <div class="review">
-                            <div class="user-profile">
-                              <img src="./resource/User1.png" alt="User Profile" class="user-profile-image">
-                            </div>
-                            <div class="comment">
-                              <div class="comment-header">
-                                <h3 class="username">John Doe</h3>
-                                <span class="timestamp">2 days ago</span>
-                              </div>
-                              <p class="comment-text">This product is amazing! I've been using it for a week and I'm blown away by its performance.</p>
-                              <div class="comment-actions">
-                                <button class="share-button">Share</button>
-                                <button class="comment-button">Comment</button>
-                                <button class="like-button">Like</button>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div class="sub-comments">
-                            <div class="sub-comment">
-                              <div class="user-profile">
-                                <img src="./resource/User2.png" alt="User Profile" class="user-profile-image">
-                              </div>
-                              <div class="comment">
-                                <div class="comment-header">
-                                  <h3 class="username">Jane Smith</h3>
-                                  <span class="timestamp">1 day ago</span>
-                                </div>
-                                <p class="comment-text">I agree, this product is amazing!</p>
-                                <div class="comment-actions">
-                                  <button class="share-button">Share</button>
-                                  <button class="comment-button">Comment</button>
-                                  <button class="like-button">Like</button>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            <div class="sub-comment">
-                              <div class="user-profile">
-                                <img src="./resource/User3.png" alt="User Profile" class="user-profile-image">
-                              </div>
-                              <div class="comment">
-                                <div class="comment-header">
-                                  <h3 class="username">Bob Johnson</h3>
-                                  <span class="timestamp">1 day ago</span>
-                                </div>
-                                <p class="comment-text">I have a question, does this product work with MacOS?</p>
-                                <div class="comment-actions">
-                                  <button class="share-button">Share</button>
-                                  <button class="comment-button">Comment</button>
-                                  <button class="like-button">Like</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                 </div>
-            </div>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <section id="app">
+    <div class="container-fluid">
+      <div class="row menu-nav">
+        <div class="col-sm">
+          <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
         </div>
-    </section>
+        <div class="col-sm">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="index.html">Inici</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Forum</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="Fils.html">Fils</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="#">Cerca</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="geeknote_preview.html">GeekNote</a>
+                  </li>
+              </ul>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+        <div class="col-sm text-center ">
+          <img src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
+          <h6> <a class="username" href="user.html">usuario123</a></h6>
+        </div>
+      </div>
+      <div class="row buscador">
+        <nav class="navbar navbar-light">
+          <div class="container-fluid justify-content-center">
+            <form class="d-flex cerca">
+              <input class="form-control me-2" id="buscador" type="search" placeholder="Search" aria-label="Search"
+                @input="buscar()">
+              <button class="btn btn-outline-success" id="btn-buscar" type="button" @click.stop="buscar()">
+                <span class="material-icons">search</span>
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+      <div class="row main-row">
+        <div class="col-sm-3 ">
+          <div class="filtros">
+            <barra-deslizante titulo="Precio:" min=0 max=3000 step=10 value=500 moneda="€"></barra-deslizante>
+            <template v-for="filtro in filtros" :key="filtro.nombre">
+              <div class="border-top" style="margin-top: 10px"></div>
+              <filtros :filtros="filtro.filtros" :titulo="filtro.titulo"></filtros>
+            </template>
+          </div>
+        </div>
+        <div class="col-sm-9 article">
+          <div class="product-container">
+            <img src="./resource/portatil.jpg" alt="Product Image" class="product-image">
+
+            <div class="review-container">
+              <div class="review">
+                <div class="user-profile">
+                  <img src="./resource/User1.png" alt="User Profile" class="user-profile-image">
+                </div>
+                <div class="comment">
+                  <div class="comment-header">
+                    <h3 class="username">John Doe</h3>
+                    <span class="timestamp">2 days ago</span>
+                  </div>
+                  <p class="comment-text">This product is amazing! I've been using it for a week and I'm blown away by
+                    its performance.</p>
+                  <div class="comment-actions">
+                    <button class="share-button">Share</button>
+                    <button class="comment-button">Comment</button>
+                    <button class="like-button">Like</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sub-comments">
+                <div class="sub-comment">
+                  <div class="user-profile">
+                    <img src="./resource/User2.png" alt="User Profile" class="user-profile-image">
+                  </div>
+                  <div class="comment">
+                    <div class="comment-header">
+                      <h3 class="username">Jane Smith</h3>
+                      <span class="timestamp">1 day ago</span>
+                    </div>
+                    <p class="comment-text">I agree, this product is amazing!</p>
+                    <div class="comment-actions">
+                      <button class="share-button">Share</button>
+                      <button class="comment-button">Comment</button>
+                      <button class="like-button">Like</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sub-comment">
+                  <div class="user-profile">
+                    <img src="./resource/User3.png" alt="User Profile" class="user-profile-image">
+                  </div>
+                  <div class="comment">
+                    <div class="comment-header">
+                      <h3 class="username">Bob Johnson</h3>
+                      <span class="timestamp">1 day ago</span>
+                    </div>
+                    <p class="comment-text">I have a question, does this product work with MacOS?</p>
+                    <div class="comment-actions">
+                      <button class="share-button">Share</button>
+                      <button class="comment-button">Comment</button>
+                      <button class="like-button">Like</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
+
 </html>
