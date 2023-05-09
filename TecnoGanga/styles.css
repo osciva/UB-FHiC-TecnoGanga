@@ -80,6 +80,7 @@
 .username{
     color: black;
     text-decoration: none;
+    margin-top: 20px;
 
 }
 .userpicture{
@@ -95,6 +96,139 @@
     text-align: center;
 }
 
+col-sm-9 article{
+    
+}
+
 .form-group {
     margin-bottom: 20px;
 }
+
+/* Estilos para la imagen del producto */
+.product-image {
+    width: 700px;
+    height: 400px;
+    background-color: #f5f5f5;
+    border: 1px solid black;
+  }
+  
+  /* Estilos para el contenedor de la imagen y la caja de comentarios */
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    margin-left: 0;
+  }
+  
+  /* Estilos para la caja de comentarios */
+  .comment-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la imagen de perfil del usuario */
+  .comment-avatar {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 10px;
+  }
+  
+  /* Estilos para la sección de respuestas */
+  .comment-replies {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    
+  }
+  
+  /* Estilos para las cajas de comentarios de las respuestas */
+  .reply-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  /* Estilos para los botones de acción */
+  .action-button {
+    background-color: #f5f5f5;
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el botón de acción activo */
+  .action-button.active {
+    background-color: #dcdcdc;
+  }
+  
+  .user-profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left; /* añadido para alinear las imágenes a la izquierda */
+  }
+  
+  .comment {
+    margin-left: 10px;
+  }
+  
+  .sub-comment {
+    margin-left: 50px;
+  }
+  
+  .like-button {
+    float: right;
+    margin-left: 10px;
+    background-color: #4CAF50; 
+    color: white; 
+    border-radius: 5px; 
+    padding: 5px 10px; 
+  }
+    
+  .comment-button {
+    float: right;
+    margin-left: 10px;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+    
+  .share-button {
+    float: right;
+    margin-left: 10px;
+    
+    background-color: #2196F3;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+
+  .comment-text {
+    margin-bottom: 30px;
+  }
+  
+  .user-profile{
+    margin-top: 20px;
+  }
+  .comment-actions{
+    margin-bottom: 80px;
+  }
