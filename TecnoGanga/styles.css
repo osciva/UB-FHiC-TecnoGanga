@@ -77,3 +77,24 @@
     justify-content: center;
     vertical-align: center;
 }
+.username{
+    color: black;
+    text-decoration: none;
+
+}
+.userpicture{
+    max-width: 200px;
+}
+.container{
+    padding-top: 25px;
+
+}
+.col-sm-4 {
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
