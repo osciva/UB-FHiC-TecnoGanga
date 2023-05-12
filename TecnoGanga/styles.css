@@ -34,6 +34,10 @@
 
 }
 
+#filtre_top{
+  margin-top: 30px;
+}
+
 .filtros{
     align-items: center;
     justify-content: center;
@@ -223,12 +227,12 @@ col-sm-9 article{
   }
 
   .comment-text {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   
   .user-profile{
     margin-top: 20px;
   }
   .comment-actions{
-    margin-bottom: 80px;
+    margin-bottom: 30px;
   }
