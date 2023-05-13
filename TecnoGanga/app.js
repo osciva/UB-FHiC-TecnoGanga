@@ -83,6 +83,8 @@ const miapp = Vue.createApp({
             value = input.value;
             this.setBusqueda(value);
         }
+          
+          
     }
 });
 miapp.component('filtros', {
