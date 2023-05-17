@@ -1,8 +1,11 @@
 const miapp = Vue.createApp({
     data(){
         return{
+            filtrosActivosMarcas: [],
+            filtrosActivosProcesadores: [],
             busqueda: "",
             precioMax: 0,
+            ocultarFiltros: true,
             productos: [{
                 nombre: "Lenovo IdeaPad 3 Gen 6",
                 imagen: "./resource/portatil.jpg",
@@ -20,7 +23,8 @@ const miapp = Vue.createApp({
                     texto: "El Lenovo IdeaPad 3 Gen 6 es una excelente opción para aquellos que buscan una computadora portátil económica pero capaz de realizar múltiples tareas. Con una pantalla nítida y vibrante, una batería de larga duración y un procesador potente, este portátil superó mis expectativas. Además, su diseño elegante y delgado lo hace fácil de transportar. Lo recomendaría a cualquiera que busque una opción de presupuesto para tareas diarias de computación, como navegación web, edición de documentos y reproducción de medios.",
                     estrellas: 120,
                     comentarios: 46
-                }]
+                }],
+                hilo_ref: 'Fils.html'
             },{
                 nombre: "ASUS ROG Strix G18",
                 imagen: "./resource/portatil2.jpg",
@@ -39,26 +43,33 @@ const miapp = Vue.createApp({
                     texto: "Caro pero es lo que hay si quieres lo último y 18\" con este portátil tendrás para unos cuantos años si te lo puedes permitir no lo dudes",
                     estrellas: 17,
                     comentarios: 6
-                }]
+                }],
+                hilo_ref: "Fils2.html"
             }
             ],
             filtros: [{
                 titulo: "Marcas",
                 filtros: [
-                    {nombre: "Asus"},
-                    {nombre: "MSI"},
-                    {nombre: "Lenovo"},
-                    {nombre: "Apple"},
-                    {nombre: "HP"},
-                    {nombre: "Acer"},
+                    {nombre: "Asus", tag: "asus"},
+                    {nombre: "MSI", tag: "msi"},
+                    {nombre: "Lenovo", tag: "lenovo"},
+                    {nombre: "Apple", tag: "apple"},
+                    {nombre: "HP", tag: "hp"},
+                    {nombre: "Acer", tag: "acer"},
                 ]
             },{
                 titulo: "Procesador",
                 filtros: [
-                    {nombre: "Intel Core I7"},
-                    {nombre: "Intel Core I5"},
-                    {nombre: "AMD Ryzen 7"},
-                    {nombre: "AMD Ryzen 5"},
+                    {nombre: "Intel Core I9",
+                    tag: "i9"},
+                    {nombre: "Intel Core I7",
+                    tag: "i7"},
+                    {nombre: "Intel Core I5",
+                    tag: "i5"},
+                    {nombre: "AMD Ryzen 7",
+                    tag: "ryzen 7"},
+                    {nombre: "AMD Ryzen 5",
+                    tag: "ryzen 5"},
                 ]
             }
             ]
@@ -69,6 +80,66 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
+        ocultar(){
+          this.ocultarFiltros = !this.ocultarFiltros;
+        },
+        filtroMarca(producto){
+            bool_m = false;
+            bool_p = false
+            if(this.filtrosActivosMarcas.length === 0){
+                bool_m = true;
+            }
+            else{
+                this.filtrosActivosMarcas.forEach(item =>{
+                    if (producto.nombre.toLowerCase().includes(item.toLowerCase())){
+                        bool_m = true;
+                    }
+                });
+            }
+            if(this.filtrosActivosProcesadores.length === 0){
+                bool_p = true;
+            }
+            else{
+                this.filtrosActivosProcesadores.forEach(item =>{
+                    if (producto.propiedades["Procesador"].toLowerCase().includes(item.toLowerCase())){
+                        bool_p = true;
+                    }
+                });
+            }
+            return bool_p && bool_m
+        },
+        addFiltro(tag){
+          this.filtros.forEach(items =>{
+             items.filtros.forEach( items2 => {
+                 if(items2.tag.toLowerCase().includes(tag.toLowerCase())){
+                     if(items.titulo == "Marcas"){
+                         this.filtrosActivosMarcas.push(tag);
+                     }else if(items.titulo == "Procesador"){
+                         this.filtrosActivosProcesadores.push(tag);
+                     }
+                 }
+             });
+          });
+        },
+        redireccionar(href){
+            console.log(href)
+            window.location.href = href;
+        },
+        deleteFiltro(tag){
+            this.filtros.forEach(items =>{
+                items.filtros.forEach( items2 => {
+                    if(items2.tag.toLowerCase() == tag){
+                        if(items.titulo == "Marcas"){
+                            const index = this.filtrosActivosMarcas.indexOf(tag);
+                            this.filtrosActivosMarcas.splice(index,1);
+                        }else if(items.titulo == "Procesador"){
+                            index = this.filtrosActivosProcesadores.indexOf(tag)
+                            this.filtrosActivosProcesadores.splice(index,1)
+                        }
+                    }
+                });
+            });
+        },
         setPrecioMax(num){
             this.precioMax = num;
         },
@@ -92,10 +163,10 @@ miapp.component('filtros', {
     <div>
       <h4 class="margen">{{titulo}}</h4>  
       <div class="filtros" style="display: inline-block;">
-        <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro, index) in filtros" :key="index">
+        <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro) in filtros" :key="filtro.nombre">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.nombre" v-model="filtroSeleccionados">
-            <label class="form-check-label" :for="'filtro_' + index">{{filtro.nombre}}</label>
+            <input class="form-check-input" type="checkbox" :id="filtro.nombre" :value="filtro.tag" v-model="filtroSeleccionados" @change="checkboxChanged">
+            <label class="form-check-label" :for="filtro.nombre">{{filtro.nombre}}</label>
           </div>
         </div>
       </div>
@@ -111,7 +182,13 @@ miapp.component('filtros', {
         }
     },
     methods: {
-        // aquí puedes definir los métodos que necesites para tu componente
+        checkboxChanged(event) {
+            if (event.target.checked) {
+                this.$parent.addFiltro(event.target.value)
+            } else {
+                this.$parent.deleteFiltro(event.target.value)
+            }
+        }
     },
 });
 miapp.component('producto',{
