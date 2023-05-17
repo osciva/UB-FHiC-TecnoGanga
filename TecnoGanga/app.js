@@ -1,8 +1,8 @@
 const miapp = Vue.createApp({
     data(){
         return{
-            filtrosActivosMarcas: null,
-            filtrosActivosProcesadores: null,
+            filtrosActivosMarcas: [],
+            filtrosActivosProcesadores: [],
             busqueda: "",
             precioMax: 0,
             productos: [{
@@ -80,10 +80,7 @@ const miapp = Vue.createApp({
         filtroMarca(producto){
             bool_m = false;
             bool_p = false
-            if(this.filtrosActivosMarcas == null){
-                bool_m = true;
-            }
-            else if(this.filtrosActivosMarcas.length == 0){
+            if(this.filtrosActivosMarcas.length === 0){
                 bool_m = true;
             }
             else{
@@ -93,10 +90,7 @@ const miapp = Vue.createApp({
                     }
                 });
             }
-            if(this.filtrosActivosProcesadores == null){
-                bool_p = true;
-            }
-            else if(this.filtrosActivosProcesadores.length == 0){
+            if(this.filtrosActivosProcesadores.length === 0){
                 bool_p = true;
             }
             else{
@@ -113,14 +107,8 @@ const miapp = Vue.createApp({
              items.filtros.forEach( items2 => {
                  if(items2.tag.toLowerCase().includes(tag.toLowerCase())){
                      if(items.titulo == "Marcas"){
-                         if(this.filtrosActivosMarcas == null){
-                             this.filtrosActivosMarcas = [];
-                         }
                          this.filtrosActivosMarcas.push(tag);
                      }else if(items.titulo == "Procesador"){
-                         if(this.filtrosActivosProcesadores == null){
-                             this.filtrosActivosProcesadores = [];
-                         }
                          this.filtrosActivosProcesadores.push(tag);
                      }
                  }
@@ -130,10 +118,10 @@ const miapp = Vue.createApp({
         deleteFiltro(tag){
             this.filtros.forEach(items =>{
                 items.filtros.forEach( items2 => {
-                    if(items2.tag.toLowerCase().includes(tag.toLowerCase())){
+                    if(items2.tag.toLowerCase() == tag){
                         if(items.titulo == "Marcas"){
-                            index = this.filtrosActivosMarcas.indexOf(tag)
-                            this.filtrosActivosMarcas.splice(index,1)
+                            const index = this.filtrosActivosMarcas.indexOf(tag);
+                            this.filtrosActivosMarcas.splice(index,1);
                         }else if(items.titulo == "Procesador"){
                             index = this.filtrosActivosProcesadores.indexOf(tag)
                             this.filtrosActivosProcesadores.splice(index,1)
@@ -141,8 +129,6 @@ const miapp = Vue.createApp({
                     }
                 });
             });
-          index = this.filtrosActivos.indexOf(tag)
-          this.filtrosActivos.splice(index,1)
         },
         setPrecioMax(num){
             this.precioMax = num;
@@ -167,10 +153,10 @@ miapp.component('filtros', {
     <div>
       <h4 class="margen">{{titulo}}</h4>  
       <div class="filtros" style="display: inline-block;">
-        <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro, index) in filtros" :key="index">
+        <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro) in filtros" :key="filtro.nombre">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.tag" v-model="filtroSeleccionados" @change="checkboxChanged">
-            <label class="form-check-label" :for="'filtro_' + index">{{filtro.nombre}}</label>
+            <input class="form-check-input" type="checkbox" :id="filtro.nombre" :value="filtro.tag" v-model="filtroSeleccionados" @change="checkboxChanged">
+            <label class="form-check-label" :for="filtro.nombre">{{filtro.nombre}}</label>
           </div>
         </div>
       </div>
