@@ -23,7 +23,8 @@ const miapp = Vue.createApp({
                     texto: "El Lenovo IdeaPad 3 Gen 6 es una excelente opción para aquellos que buscan una computadora portátil económica pero capaz de realizar múltiples tareas. Con una pantalla nítida y vibrante, una batería de larga duración y un procesador potente, este portátil superó mis expectativas. Además, su diseño elegante y delgado lo hace fácil de transportar. Lo recomendaría a cualquiera que busque una opción de presupuesto para tareas diarias de computación, como navegación web, edición de documentos y reproducción de medios.",
                     estrellas: 120,
                     comentarios: 46
-                }]
+                }],
+                hilo_ref: 'Fils.html'
             },{
                 nombre: "ASUS ROG Strix G18",
                 imagen: "./resource/portatil2.jpg",
@@ -42,7 +43,8 @@ const miapp = Vue.createApp({
                     texto: "Caro pero es lo que hay si quieres lo último y 18\" con este portátil tendrás para unos cuantos años si te lo puedes permitir no lo dudes",
                     estrellas: 17,
                     comentarios: 6
-                }]
+                }],
+                hilo_ref: "Fils2.html"
             }
             ],
             filtros: [{
@@ -118,6 +120,10 @@ const miapp = Vue.createApp({
                  }
              });
           });
+        },
+        redireccionar(href){
+            console.log(href)
+            window.location.href = href;
         },
         deleteFiltro(tag){
             this.filtros.forEach(items =>{
