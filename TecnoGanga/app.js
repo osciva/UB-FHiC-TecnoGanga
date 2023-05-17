@@ -1,7 +1,8 @@
 const miapp = Vue.createApp({
     data(){
         return{
-            filtrosActivos: null,
+            filtrosActivosMarcas: null,
+            filtrosActivosProcesadores: null,
             busqueda: "",
             precioMax: 0,
             productos: [{
@@ -76,28 +77,70 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
-        filtroMarca(name){
-            bool = false;
-            if(this.filtrosActivos == null){
-                return true;
+        filtroMarca(producto){
+            bool_m = false;
+            bool_p = false
+            if(this.filtrosActivosMarcas == null){
+                bool_m = true;
             }
-            else if(this.filtrosActivos.length == 0){
-                return true;
+            else if(this.filtrosActivosMarcas.length == 0){
+                bool_m = true;
             }
-            this.filtrosActivos.forEach(item =>{
-                if (name.toLowerCase().includes(item.toLowerCase())){
-                    bool = true;
-                }
-            });
-            return bool
+            else{
+                this.filtrosActivosMarcas.forEach(item =>{
+                    if (producto.nombre.toLowerCase().includes(item.toLowerCase())){
+                        bool_m = true;
+                    }
+                });
+            }
+            if(this.filtrosActivosProcesadores == null){
+                bool_p = true;
+            }
+            else if(this.filtrosActivosProcesadores.length == 0){
+                bool_p = true;
+            }
+            else{
+                this.filtrosActivosProcesadores.forEach(item =>{
+                    if (producto.propiedades["Procesador"].toLowerCase().includes(item.toLowerCase())){
+                        bool_p = true;
+                    }
+                });
+            }
+            return bool_p && bool_m
         },
         addFiltro(tag){
-          if (this.filtrosActivos == null){
-              this.filtrosActivos = [];
-          }
-          this.filtrosActivos.push(tag);
+          this.filtros.forEach(items =>{
+             items.filtros.forEach( items2 => {
+                 if(items2.tag.toLowerCase().includes(tag.toLowerCase())){
+                     if(items.titulo == "Marcas"){
+                         if(this.filtrosActivosMarcas == null){
+                             this.filtrosActivosMarcas = [];
+                         }
+                         this.filtrosActivosMarcas.push(tag);
+                     }else if(items.titulo == "Procesador"){
+                         if(this.filtrosActivosProcesadores == null){
+                             this.filtrosActivosProcesadores = [];
+                         }
+                         this.filtrosActivosProcesadores.push(tag);
+                     }
+                 }
+             });
+          });
         },
         deleteFiltro(tag){
+            this.filtros.forEach(items =>{
+                items.filtros.forEach( items2 => {
+                    if(items2.tag.toLowerCase().includes(tag.toLowerCase())){
+                        if(items.titulo == "Marcas"){
+                            index = this.filtrosActivosMarcas.indexOf(tag)
+                            this.filtrosActivosMarcas.splice(index,1)
+                        }else if(items.titulo == "Procesador"){
+                            index = this.filtrosActivosProcesadores.indexOf(tag)
+                            this.filtrosActivosProcesadores.splice(index,1)
+                        }
+                    }
+                });
+            });
           index = this.filtrosActivos.indexOf(tag)
           this.filtrosActivos.splice(index,1)
         },
@@ -126,7 +169,7 @@ miapp.component('filtros', {
       <div class="filtros" style="display: inline-block;">
         <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro, index) in filtros" :key="index">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.nombre" v-model="filtroSeleccionados" @change="checkboxChanged">
+            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.tag" v-model="filtroSeleccionados" @change="checkboxChanged">
             <label class="form-check-label" :for="'filtro_' + index">{{filtro.nombre}}</label>
           </div>
         </div>
