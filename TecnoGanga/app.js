@@ -1,6 +1,7 @@
 const miapp = Vue.createApp({
     data(){
         return{
+            filtrosActivos: null,
             busqueda: "",
             precioMax: 0,
             productos: [{
@@ -45,20 +46,26 @@ const miapp = Vue.createApp({
             filtros: [{
                 titulo: "Marcas",
                 filtros: [
-                    {nombre: "Asus"},
-                    {nombre: "MSI"},
-                    {nombre: "Lenovo"},
-                    {nombre: "Apple"},
-                    {nombre: "HP"},
-                    {nombre: "Acer"},
+                    {nombre: "Asus", tag: "asus"},
+                    {nombre: "MSI", tag: "msi"},
+                    {nombre: "Lenovo", tag: "lenovo"},
+                    {nombre: "Apple", tag: "apple"},
+                    {nombre: "HP", tag: "hp"},
+                    {nombre: "Acer", tag: "acer"},
                 ]
             },{
                 titulo: "Procesador",
                 filtros: [
-                    {nombre: "Intel Core I7"},
-                    {nombre: "Intel Core I5"},
-                    {nombre: "AMD Ryzen 7"},
-                    {nombre: "AMD Ryzen 5"},
+                    {nombre: "Intel Core I9",
+                    tag: "i9"},
+                    {nombre: "Intel Core I7",
+                    tag: "i7"},
+                    {nombre: "Intel Core I5",
+                    tag: "i5"},
+                    {nombre: "AMD Ryzen 7",
+                    tag: "ryzen 7"},
+                    {nombre: "AMD Ryzen 5",
+                    tag: "ryzen 5"},
                 ]
             }
             ]
@@ -69,6 +76,31 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
+        filtroMarca(name){
+            bool = false;
+            if(this.filtrosActivos == null){
+                return true;
+            }
+            else if(this.filtrosActivos.length == 0){
+                return true;
+            }
+            this.filtrosActivos.forEach(item =>{
+                if (name.toLowerCase().includes(item.toLowerCase())){
+                    bool = true;
+                }
+            });
+            return bool
+        },
+        addFiltro(tag){
+          if (this.filtrosActivos == null){
+              this.filtrosActivos = [];
+          }
+          this.filtrosActivos.push(tag);
+        },
+        deleteFiltro(tag){
+          index = this.filtrosActivos.indexOf(tag)
+          this.filtrosActivos.splice(index,1)
+        },
         setPrecioMax(num){
             this.precioMax = num;
         },
@@ -94,7 +126,7 @@ miapp.component('filtros', {
       <div class="filtros" style="display: inline-block;">
         <div class="filtros" style="margin-left: 10px; margin-top: 10px" v-for="(filtro, index) in filtros" :key="index">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.nombre" v-model="filtroSeleccionados">
+            <input class="form-check-input" type="checkbox" :id="'filtro_' + index" :value="filtro.nombre" v-model="filtroSeleccionados" @change="checkboxChanged">
             <label class="form-check-label" :for="'filtro_' + index">{{filtro.nombre}}</label>
           </div>
         </div>
@@ -111,7 +143,13 @@ miapp.component('filtros', {
         }
     },
     methods: {
-        // aquí puedes definir los métodos que necesites para tu componente
+        checkboxChanged(event) {
+            if (event.target.checked) {
+                this.$parent.addFiltro(event.target.value)
+            } else {
+                this.$parent.deleteFiltro(event.target.value)
+            }
+        }
     },
 });
 miapp.component('producto',{
