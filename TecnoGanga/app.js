@@ -246,5 +246,7 @@ function cambiarUsuario(){
         elementoNombre.innerText = nuevoNombre;
         }
 }
-
+function cambiarPagina(){
+    window.location.href= 'index.html';
+}
 miapp.mount('#app');
