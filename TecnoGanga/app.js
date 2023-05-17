@@ -83,6 +83,8 @@ const miapp = Vue.createApp({
             value = input.value;
             this.setBusqueda(value);
         }
+          
+          
     }
 });
 miapp.component('filtros', {
@@ -210,4 +212,41 @@ miapp.component('hilo', {
     },
     methods: {}
 })
+function cambiarFotoPerfil() {
+    var input = document.getElementById('foto');
+    var imagen = document.getElementsByClassName('userpicture')[0];
+    var sImagen = document.getElementById('imagenUsuario"');
+    imagen.classList.add('img-circle');
+    sImagen.classList.add('img-circle');
+
+
+    input.addEventListener('change', function(e) {
+        var archivo = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            imagen.src = e.target.result;
+            sImagen.src = e.target.result
+        };
+
+        reader.readAsDataURL(archivo);
+    });
+
+}
+function cambiarUsuario(){
+    var nuevoNombre = document.getElementById("nombre").value;
+
+    // Actualizar el elemento h6 con el nuevo nombre de usuario
+    var elementoNombre = document.getElementById("nombreUsuario");
+    if (nuevoNombre.trim() == '') {
+        // Actualizar el nombre de usuario en la parte superior derecha
+        document.querySelector('.username').textContent = nuevoNombre;
+
+    }else{
+        elementoNombre.innerText = nuevoNombre;
+        }
+}
+function cambiarPagina(){
+    window.location.href= 'index.html';
+}
 miapp.mount('#app');

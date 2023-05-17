@@ -85,10 +85,10 @@
                         <div
                             v-if="producto.nombre.toLowerCase().includes(busqueda.toLowerCase()) && getPrecioMax && getPrecioMax >= producto.precio">
                             <div class="row post">
-                                <div class="col-sm-5 col-container">
-                                    <producto :producto="producto"></producto>
+                                <div class="col-sm-5 col-container" href="Fils.html">
+                                    <producto  :producto="producto"></producto>
                                 </div>
-                                <div class="col-sm-7 col-container">
+                                <div class="col-sm-7 col-container" href="Fils.html">
                                     <hilo :hilo="producto.hilos[0]"></hilo>
                                 </div>
                             </div>
