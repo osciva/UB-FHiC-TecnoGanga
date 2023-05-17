@@ -35,7 +35,7 @@
                                         <a class="nav-link" href="#">Forum</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="Fils.html">Fils</a>
+                                        <a class="nav-link" href="#">Fils</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#">Cerca</a>
@@ -87,8 +87,11 @@
                             <div class="row post">
                                 <div class="col-sm-5 col-container" href="Fils.html">
                                     <producto  :producto="producto"></producto>
+                                    <div class="button-fils">
+                                        <button onclick="window.location.href = 'Fils.html';">Veure més</button>
+                                    </div>
                                 </div>
-                                <div class="col-sm-7 col-container" href="Fils.html">
+                                <div class="col-sm-7 col-container" href="Fils2.html">
                                     <hilo :hilo="producto.hilos[0]"></hilo>
                                 </div>
                             </div>

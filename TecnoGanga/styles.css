@@ -491,3 +491,14 @@ main h1{
     height: 20px;
 
 }
+
+.button-fils {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.button-fils button {
+    /* Agrega aquí los estilos adicionales para el botón si es necesario */
+}
