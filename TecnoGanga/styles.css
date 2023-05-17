@@ -9,7 +9,7 @@
 
 .menu-nav {
     background: var(--color2);
-    max-height: 20vh;
+    height: auto;
     align-items: center;
     align-content: center;
     justify-content: center;

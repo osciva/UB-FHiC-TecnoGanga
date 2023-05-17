@@ -5,6 +5,7 @@ const miapp = Vue.createApp({
             filtrosActivosProcesadores: [],
             busqueda: "",
             precioMax: 0,
+            ocultarFiltros: true,
             productos: [{
                 nombre: "Lenovo IdeaPad 3 Gen 6",
                 imagen: "./resource/portatil.jpg",
@@ -77,6 +78,9 @@ const miapp = Vue.createApp({
         }
     },
     methods:{
+        ocultar(){
+          this.ocultarFiltros = !this.ocultarFiltros;
+        },
         filtroMarca(producto){
             bool_m = false;
             bool_p = false
