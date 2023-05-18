@@ -82,6 +82,10 @@ const miapp = Vue.createApp({
     methods:{
         ocultar(){
           this.ocultarFiltros = !this.ocultarFiltros;
+          if(!this.ocultarFiltros){
+              this.filtrosActivosProcesadores = [];
+              this.filtrosActivosMarcas = [];
+          }
         },
         filtroMarca(producto){
             bool_m = false;
