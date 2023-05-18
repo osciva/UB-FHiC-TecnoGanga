@@ -56,7 +56,7 @@
             </div>
             <div class="row buscador">
                 <nav class="navbar navbar-light">
-                    <button class="btn btn-menu" type="button" style="width: auto; background-color: transparent" v-on:click="ocultar">
+                    <button class="btn btn-menu" type="button" style="width: auto; background-color: transparent" @click="ocultar">
                         <span class="material-icons" style="color: var(--color3); background-color: transparent">tune</span>
                     </button>
                     <div class="container-fluid justify-content-center">
@@ -72,8 +72,8 @@
                 </nav>
             </div>
             <div class="row main-row">
-                <div class="col-sm-3 ">
-                    <div class="filtros" v-if="ocultarFiltros">
+                <div class="col-sm-3 " v-if="ocultarFiltros">
+                    <div class="filtros">
                         <barra-deslizante titulo="Precio:" min=0 max=3000 step=10 value=500
                             moneda="€"></barra-deslizante>
                         <template v-for="filtro in filtros" :key="filtro.nombre">
@@ -93,6 +93,9 @@
                                     <div class="button-fils">
                                         <button @click="redireccionar(producto.hilo_ref)">Veure més</button>
                                     </div>
+                                </div>
+                                <div class="col-sm-7 col-container">
+                                    <hilo :hilo="producto.hilos[0]"></hilo>
                                 </div>
                             </div>
                         </div>
