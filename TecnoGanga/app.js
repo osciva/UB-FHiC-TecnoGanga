@@ -157,7 +157,18 @@ const miapp = Vue.createApp({
             input = document.getElementById("buscador");
             value = input.value;
             this.setBusqueda(value);
-        }
+        },
+
+        buscarGeekNote() {
+            const input = document.getElementById('buscador').value.toLowerCase();
+            const cards = document.getElementsByClassName('card');
+          
+            for (let i = 0; i < cards.length; i++) {
+              const title = cards[i].querySelector('.card-title').textContent.toLowerCase();
+              const cardVisible = title.includes(input);
+              cards[i].style.display = cardVisible ? 'block' : 'none';
+            }
+          }
           
           
     }
