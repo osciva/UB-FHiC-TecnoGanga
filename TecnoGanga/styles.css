@@ -502,3 +502,10 @@ main h1{
 .button-fils button {
     /* Agrega aquí los estilos adicionales para el botón si es necesario */
 }
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+    text-align: center;
+}
