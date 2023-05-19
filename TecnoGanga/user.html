@@ -18,7 +18,7 @@
 <section id="app">
   <div class="container-fluid">
     <div class="row menu-nav">
-      <div class="col">
+      <div class="col" @click="redireccionar('index.html')">
         <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
       </div>
       <div class="col">
@@ -45,7 +45,7 @@
         </nav>
 
       </div>
-      <div class="col text-center ">
+      <div class="col text-center " @click="redireccionar('user.html')">
         <img id=imagenUsuario" src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
         <h6 id="nombreUsuario">usuario123</h6>
 

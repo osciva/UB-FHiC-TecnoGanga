@@ -15,7 +15,7 @@
     <section id="app">
         <div class="container-fluid">
             <div class="row menu-nav">
-                <div class="col">
+                <div class="col" @click="redireccionar('index.html')">
                     <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
                 </div>
                 <div class="col" >
@@ -43,7 +43,7 @@
                     </nav>
 
                 </div>
-                <div class="col text-center ">
+                <div class="col text-center " @click="redireccionar('user.html')">
                     <img src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
                     <h6> <a class="username" href="user.html">usuario123</a></h6>
                 </div>
@@ -84,12 +84,13 @@
                             <div class="row post">
                                 <div class="col-sm-5 col-container" href="Fils.html">
                                     <producto  :producto="producto"></producto>
-                                    <div class="button-fils">
-                                        <button @click="redireccionar(producto.hilo_ref)">Veure més</button>
-                                    </div>
+
                                 </div>
                                 <div class="col-sm-7 col-container">
                                     <hilo :hilo="producto.hilos[0]"></hilo>
+                                </div>
+                                <div class="button-fils">
+                                    <button @click="redireccionar(producto.hilo_ref)">Veure més</button>
                                 </div>
                             </div>
                         </div>
