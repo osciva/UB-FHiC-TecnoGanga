@@ -15,8 +15,10 @@
     <section id="app">
         <div class="container-fluid">
             <div class="row menu-nav">
-                <div class="col" @click="redireccionar('index.html')">
-                    <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
+                <div class="col" >
+                    <div @click="redireccionar('index.html')">
+                        <img src="./resource/logo.PNG" class="img" width="100" alt="Foto del logo">
+                    </div>
                 </div>
                 <div class="col" >
                     <nav class="navbar navbar-expand-lg navbar-light">
@@ -43,9 +45,11 @@
                     </nav>
 
                 </div>
-                <div class="col text-center " @click="redireccionar('user.html')">
-                    <img src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
-                    <h6> <a class="username" href="user.html">usuario123</a></h6>
+                <div class="col text-center " >
+                    <div @click="redireccionar('user.html')">
+                        <img src="./resource/usario.png" class="img" width="50" alt="Foto del usuario">
+                        <h6> <a class="username" href="user.html">usuario123</a></h6>
+                    </div>
                 </div>
             </div>
             <div class="row buscador">
